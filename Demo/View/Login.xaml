@@ -1,0 +1,36 @@
+﻿<Window x:Class="Demo.View.Login"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.View"
+        mc:Ignorable="d"
+        Title="Login" Height="300" Width="400">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="60"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Row="0" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
+            <Button x:Name="bt1" Content="1" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt2" Content="2" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt3" Content="3" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt4" Content="4" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt5" Content="5" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt6" Content="6" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt7" Content="7" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt8" Content="8" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt9" Content="9" FontSize="30" Padding="9" Click="Bt1_Click"/>
+            <Button x:Name="bt0" Content="0" FontSize="30" Padding="9" Click="Bt1_Click"/>
+        </StackPanel>
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
+            <TextBlock Text="密碼" FontSize="30"/>
+            <TextBox x:Name="tbPassword" Width="300" FontSize="30" Margin="10,0,0,0"/>
+        </StackPanel>
+        <StackPanel Grid.Row="2" HorizontalAlignment="Center" Margin="5" Orientation="Horizontal">
+            <Button x:Name="btLogin" Content="登入" FontSize="20" Margin="20,0" Padding="40,0" Click="BtLogin_Click"/>
+            <Button x:Name="btClear" Content="清空" FontSize="20" Margin="20,0" Padding="40,0" Click="BtClear_Click"/>
+        </StackPanel>
+    </Grid>
+</Window>

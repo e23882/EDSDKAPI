@@ -1,0 +1,60 @@
+﻿<Window x:Class="Demo.View.SettingDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.View"
+        mc:Ignorable="d"
+        Title="{Binding Title}" Height="350" Width="400">
+    <Grid>
+        <StackPanel Orientation="Vertical">
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="讀值" FontSize="30"/>
+                <TextBox x:Name="tbLight10" FontSize="30" Text="{Binding LightValue}" Width="300" Margin="10,0,0,0" />
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="快門" FontSize="30"/>
+                <ComboBox SelectedIndex="{Binding TVIndex}" FontSize="30" Margin="20,0,0,0">
+                    <ComboBoxItem Content="1/1000"/>
+                    <ComboBoxItem Content="1/800"/>
+                    <ComboBoxItem Content="1/640"/>
+                    <ComboBoxItem Content="1/320"/>
+                    <ComboBoxItem Content="1/250"/>
+                    <ComboBoxItem Content="1/200"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="增益" FontSize="30"/>
+                <ComboBox SelectedIndex="{Binding ISOIndex}" FontSize="30" Margin="20,0,0,0">
+                    <ComboBoxItem Content="ISO 100"/>
+                    <ComboBoxItem Content="ISO 200"/>
+                    <ComboBoxItem Content="ISO 400"/>
+                    <ComboBoxItem Content="ISO 800"/>
+                    <ComboBoxItem Content="ISO 1600"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="光圈" FontSize="30"/>
+                <ComboBox SelectedIndex="{Binding AVIndex}" FontSize="30" Margin="20,0,0,0">
+                    <ComboBoxItem Content="4"/>
+                    <ComboBoxItem Content="5.6"/>
+                    <ComboBoxItem Content="6.3"/>
+                    <ComboBoxItem Content="7.1"/>
+                    <ComboBoxItem Content="8"/>
+                    <ComboBoxItem Content="9"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <TextBlock Text="閃燈" FontSize="30"/>
+                <ComboBox SelectedIndex="{Binding FlashIndex}" FontSize="30" Margin="20,0,0,0">
+                    <ComboBoxItem Content="ON"/>
+                    <ComboBoxItem Content="OFF"/>
+                </ComboBox>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button x:Name="btSave" Content="儲存修改" Margin="15" FontSize="30" Click="BtSave_Click"/>
+                <Button x:Name="btCancel" Content="取消" Margin="15" FontSize="30" Click="BtCancel_Click"/>
+            </StackPanel>
+            </StackPanel>
+    </Grid>
+</Window>

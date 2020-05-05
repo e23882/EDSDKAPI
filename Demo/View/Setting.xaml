@@ -1,0 +1,264 @@
+﻿<Window x:Class="Demo.View.Setting"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Demo.View"
+        mc:Ignorable="d"
+        Title="Setting" Height="670" Width="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+        
+        <StackPanel Orientation="Horizontal" Grid.Row="0" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button x:Name="btSettingPAth" Content="設定相片儲存位置" FontSize="30" Click="BtSettingPAth_Click"/>
+            <TextBox x:Name="tbPath"  FontSize="30" Width="500"/>
+        </StackPanel>
+        <StackPanel Orientation="Horizontal" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <Button x:Name="btSaveFrequency" Content="儲存測光頻率" FontSize="30" Click="BtSaveFrequency_Click"/>
+            <TextBox x:Name="tbFrequency" FontSize="30" Width="500"/>
+        </StackPanel>
+    
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="0" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight1" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV1" Text="" Width="300" Margin="10,0,0,0"  IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO1" Text="" Width="300" Margin="10,0,0,0"  IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV1" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False" />
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash1" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="一段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight2" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV2" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO2" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV2" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash2" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="二段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight3" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV3" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO3" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV3" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash3" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="三段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight4" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV4" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO4" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV4" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash4" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="四段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight5" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV5" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO5" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV5" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash5" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="五段修改" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+        <StackPanel Orientation="Vertical" Grid.Row="2" Grid.Column="1" Margin="5">
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight6" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV6" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO6" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV6" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash6" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="六段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight7" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV7" Text="" Width="300" Margin="10,0,0,0"  IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO7" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV7" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash7" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="七段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight8" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV8" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO8" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV8" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash8" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="八段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight9" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV9" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO9" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV9" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash9" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="九段修改" Click="Button_Click"/>
+            </StackPanel>
+            <StackPanel Orientation="Vertical">
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="讀值"/>
+                    <TextBox x:Name="tbLight10" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="快門"/>
+                    <TextBox x:Name="tbTV10" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="增益"/>
+                    <TextBox x:Name="tbISO10" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="光圈"/>
+                    <TextBox x:Name="tbAV10" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <TextBlock Text="閃燈"/>
+                    <TextBox x:Name="tbFlash10" Text="" Width="300" Margin="10,0,0,0" IsEnabled="False"/>
+                </StackPanel>
+                <Button Content="十段修改" Click="Button_Click"/>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Window>
