@@ -1,20 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
 using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Xml;
 using System.Xml.Linq;
 using EOSDigital.API;
@@ -66,25 +58,41 @@ namespace Demo
         {
             //初始化元件
             InitializeComponent();
-            //檢查設定檔(Setting.xml)是否存在，是 > 讀取設定 否 > 建立預設設定檔 
-            if (!File.Exists($"{System.Environment.CurrentDirectory}\\setting.xml"))
+            Init();
+        }
+
+        public void Init()
+        {
+            try
             {
-                CreatDefaultSetting();
+                //檢查設定檔(Setting.xml)是否存在，是 > 讀取設定 否 > 建立預設設定檔 
+                if (!File.Exists($"{System.Environment.CurrentDirectory}\\setting.xml"))
+                {
+                    CreatDefaultSetting();
+                    ReadSetting();
+                }
+                else
+                    ReadSetting();
+                //設定UI DataBinding
+                this.DataContext = main;
+                //初始化相機API相關物件
+                if (!InitAPI())
+                    MessageBox.Show("Error");
+                //
+                lightInstance = new Light(main.COM, 9600, 8);
+                lightInstance.ReceiveData += Lt_ReceiveData;
+                //初始化測光執行續
+                checkThread = new Thread(GetLightValue);
+                checkThread.Start();
+            }
+            catch (Exception ie)
+            {
+                MessageBox.Show($"程式初始化發生例外{ie.Message}\r\n{ie.StackTrace}");
+                if(checkThread != null)
+                    checkThread.Suspend();
+                btStop.Content = "啟動";
                 ReadSetting();
             }
-            else
-                ReadSetting();
-            //設定UI DataBinding
-            this.DataContext = main;
-            //初始化相機API相關物件
-            if (!InitAPI())
-                MessageBox.Show("Error");
-            //
-            lightInstance = new Light("COM3", 9600, 8);
-            lightInstance.ReceiveData += Lt_ReceiveData;
-            //初始化測光執行續
-            checkThread = new Thread(GetLightValue);
-            checkThread.Start();
         }
 
         private void Lt_ReceiveData(object sender, EventArgs e)
@@ -194,6 +202,9 @@ namespace Demo
             xmlDoc.Load("Setting.xml");//載入xml檔
             var settingNode = xmlDoc.SelectSingleNode("Setting");
             var frequency = ((XmlElement)settingNode).GetAttribute("Frequency");
+            main.COM = ((XmlElement)settingNode).GetAttribute("COM");
+            if(lightInstance != null)
+                lightInstance.SetCOM(main.COM);
             main.Frequency = int.Parse(frequency);
         }
 
@@ -204,7 +215,8 @@ namespace Demo
         {
             XElement xElement = new XElement(
                 new XElement("Setting",
-                    new XAttribute("Frequency", "180"),
+                new XAttribute("COM", "COM4"),
+                new XAttribute("Frequency", "180"),
                     new XAttribute("Path", "C:\\"),
                         new XElement("LV",
                             new XAttribute("LV", "1"),
@@ -363,7 +375,8 @@ namespace Demo
         private void BtSetting_Click(object sender, RoutedEventArgs e)
         {
             //停止測光執行續
-            checkThread.Suspend();
+            if(checkThread != null)
+                checkThread.Suspend();
             btStop.Content = "啟動";
             IsRunning = false;
             //顯示登入視窗
@@ -386,9 +399,14 @@ namespace Demo
             }
             else
             {
-                checkThread.Resume();
-                btStop.Content = "停止";
-                ReadSetting();
+                if (checkThread is null)
+                    Init();
+                else
+                {
+                    checkThread.Resume();
+                    btStop.Content = "停止";
+                    ReadSetting();
+                }
             }
             IsRunning = !IsRunning;
         }
@@ -401,7 +419,8 @@ namespace Demo
         private void Window_Closed(object sender, EventArgs e)
         {
             //中止測光執行續
-            checkThread.Interrupt();
+            if (checkThread != null)
+                checkThread.Interrupt();
             //關閉相機Session
             CloseSession();
             System.Environment.Exit(System.Environment.ExitCode);

@@ -5,16 +5,18 @@ using System.Linq;
 using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 
 namespace LightAPI
 {
     public class Light
     {
         #region Declaration
-        bool Console_receiving = true;
+        public bool Console_receiving = true;
         SerialPort connection;
         public delegate void GetDataEvent(object sender, EventArgs e);
         public event GetDataEvent ReceiveData;
+        Thread t;
         #endregion
 
         #region Property
@@ -47,10 +49,18 @@ namespace LightAPI
                 Console_receiving = true;
 
                 //開啟執行續做接收動作
-                Thread t = new Thread(DoReceive);
+                t = new Thread(DoReceive);
                 t.IsBackground = true;
                 t.Start();
+               
             }
+        }
+
+        public void SetCOM(string parameter)
+        {
+            connection.Close();
+            connection.PortName = parameter;
+            connection.Open();
         }
 
         /// <summary>
@@ -88,6 +98,7 @@ namespace LightAPI
             }
         }
 
+        private bool DoReceiveRunning = false;
         /// <summary>
         /// 接收訊息
         /// </summary>

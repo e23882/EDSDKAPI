@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.IO.Ports;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -26,6 +27,8 @@ namespace Demo.View
         public Setting()
         {
             InitializeComponent();
+            ReadCurrentCOMPort();
+
             //如果沒有設定檔產生設定檔
             if (!File.Exists($"{System.Environment.CurrentDirectory}\\setting.xml"))
             {
@@ -41,6 +44,7 @@ namespace Demo.View
                 new XElement("Setting",
                     new XAttribute("Frequency", "180"),
                     new XAttribute("Path", "C:\\"),
+                    new XAttribute("COM", "COM4"),
                         new XElement("LV",
                             new XAttribute("LV", "1"),
                             new XAttribute("Value", "3"),
@@ -135,6 +139,30 @@ namespace Demo.View
             xw.Close();
         }
 
+        public void ReadCurrentCOMPort()
+        {
+            string[] ports2 = SerialPort.GetPortNames();
+            cbComPort.ItemsSource = null;
+            List<ComboboxData> list = new List<ComboboxData>();
+            foreach (var item in ports2)
+            {
+                list.Add(new ComboboxData()
+                {
+                    Name = item,
+                    Value = item
+                });
+            }
+            cbComPort.ItemsSource = list;
+            cbComPort.DisplayMemberPath = "Name";
+            cbComPort.SelectedValuePath = "Value";
+        }
+        public class ComboboxData
+        {
+            public string Name { get; set; }
+            public string Value { get; set; }
+        }
+
+
         public void ReadSetting()
         {
             XmlDocument xmlDoc = new XmlDocument();
@@ -147,6 +175,11 @@ namespace Demo.View
                 var path = ((XmlElement)item).GetAttribute("Path");
                 tbPath.Text = path;
                 tbFrequency.Text = frequency;
+                cbComPort.SelectedValue = ((XmlElement)item).GetAttribute("COM");
+                //cbComPort.SelectedItem = ((XmlElement)item).GetAttribute("COM");
+
+                //tbCOM.Text = ((XmlElement)item).GetAttribute("COM");
+
             }
             var data = xmlDoc.SelectNodes("Setting/LV");
             
@@ -346,6 +379,7 @@ namespace Demo.View
                 var data = xmlDoc.SelectSingleNode("Setting");
                 ((XmlElement)data).SetAttribute("Path", path.SelectedPath);
                 xmlDoc.Save("Setting.xml");
+                System.Windows.MessageBox.Show("儲存路徑成功");
                 ReadSetting();
             }
             catch (Exception ie)
@@ -353,6 +387,26 @@ namespace Demo.View
                 System.Windows.MessageBox.Show($"更新設定檔路徑發生例外: \r\n{ie.Message}\r\n{ie.StackTrace}");
             }
 
+        }
+
+        private void BtCOM_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                XmlDocument xmlDoc = new XmlDocument();
+                xmlDoc.Load("Setting.xml");//載入xml檔
+                var data = xmlDoc.SelectSingleNode("Setting");
+                //((XmlElement)data).SetAttribute("COM", tbCOM.Text);
+                ((XmlElement)data).SetAttribute("COM", cbComPort.SelectedValue.ToString());
+                xmlDoc.Save("Setting.xml");
+                System.Windows.MessageBox.Show("儲存路徑成功");
+
+                ReadSetting();
+            }
+            catch (Exception ie)
+            {
+                System.Windows.MessageBox.Show($"更新COM PORT設定發生例外: \r\n{ie.Message}\r\n{ie.StackTrace}");
+            }
         }
     }
 }

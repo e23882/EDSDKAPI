@@ -19,6 +19,8 @@ namespace ViewModel
         private int _Frequency = 180;
         private string _DeviceName = "No Camera";
         private string _SavePath = string.Empty;
+        private string _COM = "COM3";
+
         #endregion
 
         #region Property
@@ -144,6 +146,20 @@ namespace ViewModel
             set
             {
                 _SavePath = value;
+                OnPropertyChanged();
+            }
+        }
+
+
+        public string COM
+        {
+            get
+            {
+                return _COM;
+            }
+            set
+            {
+                _COM = value;
                 OnPropertyChanged();
             }
         }
